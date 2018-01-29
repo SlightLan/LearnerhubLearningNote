@@ -1,0 +1,64 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-01-29T12:03:29+08:00
+
+====== 初始配置 ======
+Created 星期一 29 一月 2018
+
+部署Gitlab源码开发版本：
+1、依赖库准备
+	按照官方源代码安装文件 https://docs.gitlab.com/ce/install/installation.html 提到的依赖库安装。
+	执行命令：
+	sudo apt-get install -y build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libre2-dev libreadline-dev libncurses5-dev libffi-dev curl openssh-server checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev logrotate rsync python-docutils pkg-config cmake
+	（以上依赖库并不完全，在安装过程中可能出现缺少部分依赖库的情况，需要根据汇报的错误信息进行补全）
+	
+	
+2、安装GIT
+	注意Ubuntu自带的Git版本过低，需要自行安装最新版Git
+	
+3、安装Ruby
+	Ruby安装版本应与官网推荐的2.3.6版本对应，但是目前已知Ruby2.5.3并不与其发生冲突
+	完成Ruby安装之后，安装Gem管理器Bundle：
+	sudo gem install bundler --no-ri --no-rdoc
+
+4、安装Go
+	Go语言官方网站需要翻墙访问，如果不具备科学上网条件，可以使用本项目中准备好的压缩包自行解压安装
+	
+5、NodeJS安装
+	NodeJS通过使用本地apt-get无法安装到合适的版本，推荐使用npm进行安装：
+		sudo apt-get install nodejs-legacy (可能并不需要)
+		sudo apt-get install npm
+		sudo npm install -g n (安装NodeJS包管理工具n)
+		sudo n stable (安装最新的稳定版NodeJS)
+
+6、创建系统用户
+	命令：
+	sudo adduser --disabled-login --gecos 'YOURGROUP' YOURUSERNAME (自行替换用户组和用户名)
+	完成这一步之后，在/home文件夹中会出现YOURUSERNAME文件夹，之后的所有开发都将在此处进行
+	
+7、安装与配置静态数据库
+	由于Gitlab开发版安装套件将自动帮助完成数据库的配置，这里我们只需要完成数据库的安装即可
+	这里使用postgresql数据库：
+	sudo apt-get install -y postgresql postgresql-client libpq-dev postgresql-contrib
+	可以直接使用apt-get进行安装
+	
+8、安装动态数据库
+	Gitlab使用了动态数据库Redis：
+	sudo apt-get install redis-server
+
+9、使用Gitlab-Develop-Kit进行开发环境的安装
+	使用root权限，在本地RubyGem库中安装GDK：
+	sudo gem install gitlab-development-kit
+	
+	完成GDK安装之后，进入/home/YOURUSERNAME文件夹中，执行：
+	gdk init
+	之后可以看到生成了一个文件夹gitlab-development-kit，进入该文件夹进行下一步安装：
+	gdk install
+	该命令将自动从Gitlab官网克隆代码仓库，并帮你完成运行所需的所有配置
+	
+10、完成安装
+	确认以上命令正确无误运行完毕之后，Gitlab开发版已经在你的系统中安装完成，在当前目录运行：
+	gdk run
+	将会运行Gitlab所有组件
+	本地通过127.0.0.1:3000访问本地搭建的Gitlab网站
+	
