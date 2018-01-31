@@ -8,3 +8,6 @@ Created 星期一 29 一月 2018
 [[初始配置]]
 [[将Gitlab装入RubyMine开发工具]]
 [[创建LearnerHub的Docker容器]]
+
+PS:
+[[使用FTP服务向云服务器上传所需的文件]]

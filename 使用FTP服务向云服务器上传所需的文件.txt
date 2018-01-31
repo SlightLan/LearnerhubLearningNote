@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-01-31T14:32:38+08:00
+
+====== 使用FTP服务向云服务器上传所需的文件 ======
+Created 星期三 31 一月 2018
+
+云服务器的FTP地址为：
+120.27.22.10
+用户名：FTPClient
+密码     ：同root密码
+
+在Ubuntu下使用终端进行FTP连接：
+ftp 120.27.22.10
+连接到云服务器，然后输入用户名和密码
+使用正常ubuntu文件系统操作命令访问FTP下的文件目录
+使用命令： 
+pull 文件名           下载文件
+put 文件名            上传文件
