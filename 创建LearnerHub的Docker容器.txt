@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-01-31T11:07:46+08:00
+
+====== 创建LearnerHub的Docker容器 ======
+Created 星期三 31 一月 2018
+
+原始GitlabDocker容器创建命令：
+docker create -it --hostname gitlab.example.com --publish 443:443 --publish 80:80 --publish 23:23 --name gitlab --restart always ubuntu
