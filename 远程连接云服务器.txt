@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-01-31T14:40:49+08:00
+
+====== 远程连接云服务器 ======
+Created 星期三 31 一月 2018
+
+只能使用远程连接访问云服务器
+在ubuntu下使用ssh命令进行连接：
+ssh -l root 120.27.22.10 （现在直接使用root用户进行连接）
+随后输入密码完成连接
+
+云服务器中将learnerhub安装在docker容器中
+可以使用：
+	docker ps -a
+	查看当前运行的所有容器
+可以使用：
+	docker exec -it 容器名 bash
+	进入容器的shell界面
+	
