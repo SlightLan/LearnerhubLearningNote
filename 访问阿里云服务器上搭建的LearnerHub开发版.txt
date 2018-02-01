@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-02-01T15:56:35+08:00
+
+====== 访问阿里云服务器上搭建的LearnerHub开发版 ======
+Created 星期四 01 二月 2018
+
+访问网站 learnerhub.net 或者直接访问ip：120.27.22.10即可连接到云服务器上部署的LearnerHub开发版网站
+
+目前使用的是默认管理员密码：
+UserName：root
+PassWord：5iveL!fe
