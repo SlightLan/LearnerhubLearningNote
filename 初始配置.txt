@@ -50,7 +50,9 @@ Created 星期一 29 一月 2018
 	使用root权限，在本地RubyGem库中安装GDK：
 	sudo gem install gitlab-development-kit
 	
-	完成GDK安装之后，进入/home/YOURUSERNAME文件夹中，执行：
+	完成GDK安装之后，进入/home/YOURUSERNAME文件夹中，首先：
+	sudo su YOURUSERNAME
+	然后执行：
 	gdk init
 	之后可以看到生成了一个文件夹gitlab-development-kit，进入该文件夹进行下一步安装：
 	gdk install
