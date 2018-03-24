@@ -1,0 +1,138 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-03-24T08:45:30+08:00
+
+====== 通过源码安装及配置Gitlab生产版 ======
+Created 星期六 24 三月 2018
+
+官网源码安装教程：
+https://docs.gitlab.com/ce/install/installation.html
+1、依赖包安装：
+	安装sudo：sudo在ubuntu系统中属于预装软件，通常无需安装
+	安装vim：ubuntu系统包含预装的nano编辑器，通常无需安装
+	安装依赖库：安装即可
+	安装libkrb5-dev：生产版Gitlab无需安装
+	安装Git：
+		使用git --version命令查看本机git版本，如果低于2.9.5，则将本机git卸载
+		卸载预装git命令：sudo apt-get remove git-core
+		重新通过源码安装git：按照教程
+		__×××此处可能出现git源码压缩包解压失败问题，见问题解决办法1×××__
+		__×××完成安装后，注意此时git安装路径发生改变，在随后的配置过程中需要手动更改×××__
+2、Ruby安装：
+	首先尝试卸载本机预装Ruby（通常没有预装）
+	按照教程安装__指定版本__Ruby
+	按照教程安装Bundle Gem
+	
+3、安装Go：
+	按照教程安装Go语言
+	__×××此处可能出现无法下载Go语言源码压缩包的问题，见问题解决办法2×××__
+	
+4、安装Node：
+	按照教程安装
+	如果出现无法安装的问题，可以使用npm的n工具进行安装（见“初始配置”文档）
+	记得安装yarn
+	
+5、添加系统用户：
+	教程中使用的是用户git，推荐不要更改以避免可能出现的错误
+	
+6、安装数据库：
+	按照教程安装postgre数据库
+	按照教程配置数据库预备信息
+
+7、安装Redis：
+	按照教程安装即可
+	
+8、安装Gitlab：
+	* 克隆Gitlab代码：
+		按照教程
+	* 配置Gitlab“：
+		按照教程
+		在：	# Update GitLab config file, follow the directions at top of file
+							   sudo -u git -H editor config/gitlab.yml
+		步骤中，在用编辑器打开的配置文件中，寻找默认的Git安装位置，如果在以上步骤中是手动安装的Git，则将原有的路径：/usr/bin/git  更改为：/usr/local/bin/git
+		
+		在：     # Find number of cores
+					   nproc
+					   # Enable cluster mode if you expect to have a high load instance
+				 # Set the number of workers to at least the number of cores
+				 # Ex. change amount of workers to 3 for 2GB RAM server
+				 sudo -u git -H editor config/unicorn.rb
+		步骤中，输入nproc命令可以查看cpu内核数，在下面打开的配置文件中，将默认配置 3 更改为本机的cpu内核数
+		
+		在：	# Change the Redis socket path if you are not using the default Debian / Ubuntu configuration
+				  sudo -u git -H editor config/resque.yml
+		步骤中，无需做修改
+	* 配置数据库：
+		由于我们只使用了ppstgresql数据库，我们只需要运行第一行命令：
+		# PostgreSQL only:
+		sudo -u git cp config/database.yml.postgresql config/database.yml
+		即可
+	* 安装Gems：
+		同上，我们只需要运行第一行命令：
+		# For PostgreSQL (note, the option says "without ... mysql")
+		sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
+		即可
+	* 安装Gitlab Shell：
+		按照教程安装，无需更改配置
+	* 安装Gitlab-workhorse：
+		第二条命令可以制定使用其他的Git服务器（非本机）作为Gitlab仓库，这里我们不要使用
+	* 初始化数据库
+		第二条命令的作用是预设Gitlab管理员账户，如果有需要可以自行修改后运行此命令
+		__×××执行第一条初始化命令时可能出现大量错误，见问题解决办法3×××__
+	* 初始化脚本
+	* 安装Gitaly
+	* 。。。
+	* 。。。
+
+9、安装Nginx：
+
+问题解决办法：
+1、Git安装：
+	使用官方教程提供的Git source下载地址，可能出现checksum不匹配及无法解压的问题
+	解决办法：
+2、Go安装：
+	如果无法正常下载Go语言压缩包，可能是由于网络被墙的原因（Go属于Google）
+	可以尝试挂在VPN后再次下载，也可以通过120.27.22.10开设的ftp服务器中拉取
+	（使用ftp服务器方法见其他说明文档）
+3、初始化数据库：
+	可能出现的问题：
+	1）报错：大致意思...密码错误，无法以XXX用户登录
+				  解决办法：
+			首先使用超级用户登录postgre数据库，修改XXX用户密码：
+			在root或有权限的用户下，执行以下命令：
+			psql -d template1 -U postgres -c "alter role XXX password ‘XXXXXXX’;"
+			更改第一个XXX为之前配置的Gitlab数据库用户名，如未修改，则为git
+			更改第二个XXXXXXX为你想设置的新用户名
+			
+			然后进入gitlab/config文件夹，编辑database.yml文件，修改
+			production:
+			  adapter: postgresql
+			  encoding: unicode
+			  database: gitlabhq_production
+			  pool: 10
+			  template: template0
+			  username: git
+			  __password: "你设置的密码"__
+			  host: localhost
+	2)	报错：大致意思...使用的是UTF-8编码，但是postgre数据库是ASCII编码
+			解决办法：
+			修改gitlab/config文件下database.yml文件：
+			production:
+			  adapter: postgresql
+			  encoding: unicode
+			  database: gitlabhq_production
+			  pool: 10
+			  __template: template0__
+			  username: git
+			  password: "secure password"
+			  host: localhost
+	3)	报错：大致意思...数据库用户git没有权限创建pg_trgm extension
+			解决办法：
+			将Gitlab的数据库用户（默认是git）提升为超级用户
+			
+			
+			
+			
+			
+
+
