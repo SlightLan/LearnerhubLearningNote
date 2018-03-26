@@ -85,7 +85,15 @@ https://docs.gitlab.com/ce/install/installation.html
 	* 。。。
 
 9、安装Nginx：
+	当前Gitlab配置需要有最新版的Nginx，所以不能使用教程中的apt-get安装办法
+	需要自行搜索安装最新Nginx版本的方法
+	安装完成之后，仔细阅读官网教程，选择修改配置文件，或直接删除制定目录下文件完成配置
 
+10、剩余步骤：
+	运行check命令，如所有项目均未报错，则可以 重新启动gitlab服务开始使用。
+	到此安装完成。
+	
+	
 问题解决办法：
 1、Git安装：
 	使用官方教程提供的Git source下载地址，可能出现checksum不匹配及无法解压的问题
