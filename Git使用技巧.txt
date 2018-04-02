@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-04-02T08:19:52+08:00
+
+====== Git使用技巧 ======
+Created 星期一 02 四月 2018
+
+1、如何使用Git恢复误删文件：
+	git checkout 误删的文件路径
+	例：git checkout app/control/snippets/index.haml

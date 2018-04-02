@@ -87,6 +87,14 @@ https://docs.gitlab.com/ce/install/installation.html
 9、安装Nginx：
 	当前Gitlab配置需要有最新版的Nginx，所以不能使用教程中的apt-get安装办法
 	需要自行搜索安装最新Nginx版本的方法
+	{
+	此处提供一处可行的新版nginx安装方法：
+	sudo apt-get install software-properties-common
+	sudo add-apt-repository ppa:nginx/stable 
+	sudo apt-get update
+	sudo apt-get install nginx
+	命令执行完成后，使用nginx -v查看当前nginx版本，确认版本1.12以上即可
+	}
 	安装完成之后，仔细阅读官网教程，选择修改配置文件，或直接删除制定目录下文件完成配置
 
 10、剩余步骤：
@@ -137,6 +145,9 @@ https://docs.gitlab.com/ce/install/installation.html
 	3)	报错：大致意思...数据库用户git没有权限创建pg_trgm extension
 			解决办法：
 			将Gitlab的数据库用户（默认是git）提升为超级用户
+4、系统状态检查出错：
+	1）gitlab-shell检查报错类似：API not access：502
+		可能出现端口占用现象，可以自行查找占用进程，或直接重启后再次运行状态检查
 			
 			
 			
