@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-04-09T08:15:12+08:00
+
+====== 2018年04月04日 ======
+Created 星期一 04 四月 2018
+
+注释掉了几个跳转按钮，位置在页头的导航栏上
+	靠左的“里程碑”跳转按钮(app/views/layouts/nav/_dashboard.html.haml)
+	靠右的三个图标形的跳转按钮(app/views/layouts/header/_default.html.haml)
+
+注释掉了项目侧边栏中
+	议题(Issue)中的“里程碑”、
+	CI/CD整个、
+	设置中的CI/CD
+	的跳转按钮(app/views/layouts/nav/sidebar/_project.html.haml)
+
+注释掉了用户设置的侧边栏中
+	应用程序(Applications)、
+	即时通讯/站内通讯(Chat)、
+	GPG密钥
+	的跳转按钮(app/views/layouts/nav/sidebar/_profile.html.haml)
+	
+将Logo的文字注释掉，改成LearnerHub (app/views/layouts/header/_default.html/haml)
+
+在样式文件中对Logo进行修饰，关键字logo-text (app/assets/stylesheets/framework/header.scss)
+{{../pasted_image001.png}}		改成		{{../pasted_image003.png}}

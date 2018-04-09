@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-04-09T08:18:00+08:00
+
+====== 在Gitlab生产版服务器上应用语言和assets改动 ======
+Created 星期一 09 四月 2018
+
+应用语言改动：
+命令：bundle exec rake gettext:compile RAILS_ENV=production
+
+应用assets改动：
+命令：bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
