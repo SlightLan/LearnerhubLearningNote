@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-04-09T11:26:51+08:00
+
+====== Ruby on Rails 实战圣经 ======
+创建日期 星期一 09 四月 2018
+
+2018年04月09日
+在开发上遇到很多难题，准备再好好学一次 Ruby 和 Ruby on Rails ，于是找到了这本书
+这个文档就用来作为这本书的读书笔记吧
