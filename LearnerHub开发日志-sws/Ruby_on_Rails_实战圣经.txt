@@ -5,6 +5,82 @@ Creation-Date: 2018-04-09T11:26:51+08:00
 ====== Ruby on Rails 实战圣经 ======
 创建日期 星期一 09 四月 2018
 
+[[https://ihower.tw/rails/intro-cn.html|文章链接]]
+
 2018年04月09日
 在开发上遇到很多难题，准备再好好学一次 Ruby 和 Ruby on Rails ，于是找到了这本书
 这个文档就用来作为这本书的读书笔记吧
+
+2018年04月09日15:04:51
+	
+	
+	=== 什么是网站开发框架 ===
+
+	【软件框架（Software framework）】是为了实现某个业界标准或完成特定基本任务的软件组件规范，
+	也指为了实现某个软件组件规范时，提供规范所要求之基础功能的软件产品。
+	框架的功能类似于基础设施，与具体的软件应用五官，但是提供并实现最为基础的软件架构和体系。
+	软件开发者通常依据特定的框架实现更为复杂的商业运用和业务逻辑。
+	这样的软件应用可以在支持同一种框架的软件系统中运行。
+	
+	Model 物件爆装了资料与商业罗技，例如操作数据库
+	View表示使用者接口，显示及编辑表单，可内嵌Ruby程式的HTML
+	Controller负责将资料送进送出Model，处理从外界（也就是浏览器）来的HTTP Request请求，与Model互动后输出View（也就是HTML）
+	
+2018年04月09日15:46:20
+	
+	=== 在Controller中，一个公开函式（public method）就代表一个Action，一个Action对应一个HTTP的请求和回应。 ===
+	
+	
+	=== link_to "abc", root_path 中的root_path就是在config/routes.rb中设置的root:to => "页面" ===
+	
+	
+	=== 使用双引号的字符串才能进行内插处理 ===
+	key = 'word'
+	puts "hello #{key}!"
+
+	
+	=== :abc 定义的识别名称（symbol）不会变 ===
+	puts "foobar".object_id      # 输出 2151854740
+	puts "foobar".object_id      # 输出 2151830100
+	puts :foobar.object_id       # 输出 577768
+	puts :foobar.object_id       # 输出 577768
+	
+	Ruby 1.9以后支持新的语法
+	config = { foo: 123, bar: 456 } # 等同于 { :foo => 123, :bar => 456 }
+	
+	=== 数组增删 ===
+	colors = ["red", "blue"]
+
+	colors.push("black")
+	colors << "white"
+	puts colors.join(", ") # red, blue, black, white
+	
+	colors.pop
+	puts colors.last #black
+	
+	languages = ['Ruby', 'Javascript', 'Perl']
+	
+	=== 数组遍历 ===
+	languages.each do |lang|
+	  puts 'I love ' + lang + '!'
+	end
+	
+	# I Love Ruby!
+	# I Love Javascript!
+	# I Love Perl!
+	
+	=== 还是遍历 ===
+	config = { :foo => 123, :bar => 456 }
+	config.each do |key, value|
+	  puts "#{key} is #{value}"
+	end
+	
+	# foo is 123
+	# bar is 456
+	
+	=== 只有 false 和 nil 是假，其它都为真 ===
+	
+	=== .inspect 通过字符串的形式返回数组内容 ===
+	
+	=== class中self定义的是类别方法，在new之前就可以直接以"."的方式调用 ===
+	

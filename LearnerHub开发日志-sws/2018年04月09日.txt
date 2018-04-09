@@ -20,4 +20,4 @@ Creation-Date: 2018-04-09T09:10:13+08:00
 
 5. 推测默认激活的按钮是由上一级页面决定的
 
-6. [[https://ihower.tw/rails/intro.html|ruby实战圣经]] ，笔记
+6. [[https://ihower.tw/rails/intro-cn.html|ruby实战圣经]] ，笔记
