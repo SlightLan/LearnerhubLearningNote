@@ -84,3 +84,12 @@ Creation-Date: 2018-04-09T11:26:51+08:00
 	
 	=== class中self定义的是类别方法，在new之前就可以直接以"."的方式调用 ===
 	
+2018年04月10日09:39:18
+	
+	
+	=== simple_format是一个内建的View Helper，它的作用是可以将换行字符\n置换成<br />，有基本的HTML换行效果。 ===
+	<%= @event.name %>
+	<%= simple_format(@event.description) %>
+	
+	<p><%= link_to 'Back to index', :controller => 'events', :action => 'index' %></p>
+

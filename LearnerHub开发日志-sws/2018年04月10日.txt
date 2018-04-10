@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-04-10T11:32:00+08:00
+
+====== 2018年04月10日 ======
+创建日期 星期二 10 四月 2018
+
+[[../Ruby_on_Rails_实战圣经.txt|看实战圣经]]
+
+尝试修改修改偏好语言保存后直接显示效果，无果
