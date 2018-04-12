@@ -92,4 +92,30 @@ Creation-Date: 2018-04-09T11:26:51+08:00
 	<%= simple_format(@event.description) %>
 	
 	<p><%= link_to 'Back to index', :controller => 'events', :action => 'index' %></p>
+	
+	=== before_action方法 ===
+	=== 透过before_action，我们可以将Controller中重复的程式独立出来。 ===
+	
+	在events_controller.rb开头内新增一行：
+	
+	class EventsController < ApplicationController
+	  before_action :set_event, :only => [ :show, :edit, :update, :destroy]
+	  # ....
+	  # ... 下略
+	在下方private后面新增一个方法如下：
+	
+	def set_event
+	  @event = Event.find(params[:id])
+	end
+	Controller中的公开(public)方法都是Action，也就是可以让浏览器呼叫使用的动作。
+	使用protected或private可以避免内部方法被当做Action使用。
+	
+	删除show、edit、update、destroy方法中的
+	
+	@event = Event.find(params[:id])
 
+	
+	=== render :action => "new"会回传new Action所使用的样板，而不是执行new action这个方法。 ===
+	=== 如果改成使用redirect_to会让浏览器重新导向到new Action， ===
+	
+	=== 但是如此一来@event就被重新建立而失去使用者刚输入的资料。 ===
